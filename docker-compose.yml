@@ -1,0 +1,14 @@
+services:
+  nginx-proxy:
+    image: openresty/openresty
+    container_name: nginx-proxy
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx_proxy.conf:/usr/local/openresty/nginx/conf/nginx.conf
+      - ./content:/usr/share/content
+    tmpfs:
+      - /nginx_cache
+
+volumes:
+  nginx_cache:
