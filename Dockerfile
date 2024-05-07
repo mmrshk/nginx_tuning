@@ -14,6 +14,11 @@ RUN wget http://nginx.org/download/nginx-1.20.2.tar.gz \
 RUN wget https://github.com/FRiCKLE/ngx_cache_purge/archive/refs/tags/2.5.tar.gz \
     && tar -zxvf 2.5.tar.gz
 
+# Download MD5 Lua library
+RUN wget https://github.com/kikito/md5.lua/archive/master.zip \
+    && unzip master.zip \
+    && mv md5.lua-master/md5.lua /usr/local/lib/
+
 # Compile Nginx with ngx_cache_purge module
 RUN cd nginx-1.20.2 \
     && ./configure --add-module=../ngx_cache_purge-2.5 \
